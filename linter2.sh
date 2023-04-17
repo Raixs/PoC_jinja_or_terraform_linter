@@ -28,7 +28,9 @@ elif contains_jinja "$file"; then
   echo "The file '$file' contains Jinja syntax."
 elif contains_terraform "$file"; then
   echo "The file '$file' contains Terraform syntax."
-  tflint "$file"
+  file_directory=$(dirname "$file")
+  file_basename=$(basename "$file")
+  tflint --chdir "$file_directory" --filter "$file_basename"
 else
   echo "The file '$file' does not contain Jinja or Terraform syntax."
 fi
