@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: check if dest dir exists
+      file:
+        path: "{{ TMPDIR }}"
+        state: directory
+
+    - name: import mock values
+      import_vars: ./vars.yml
+
+    - name: render template from mock values
+      template:
+        src: "{{ src_file }}"
+        dest: "{{ TMPDIR }}/{{ src_file }}"
+...

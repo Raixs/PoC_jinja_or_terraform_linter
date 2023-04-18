@@ -1,5 +1,7 @@
 #!/bin/bash
 
+TMPDIR=/tmp/linter
+
 # Verifica si un archivo contiene sintaxis Jinja
 contains_jinja() {
   local file="$1"
@@ -24,6 +26,8 @@ file="$1"
 if contains_jinja "$file" && contains_terraform "$file"; then
   echo "The file '$file' contains both Jinja and Terraform syntax."
   j2lint "$file"
+  ansible-playbook -e src_file=$file -e TMPDIR=$TMPDIR mock_play.yml
+  tflint --chdir "$TMPDIR" --filter "$file"
 elif contains_jinja "$file"; then
   echo "The file '$file' contains Jinja syntax."
 elif contains_terraform "$file"; then
