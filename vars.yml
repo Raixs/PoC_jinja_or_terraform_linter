@@ -7,7 +7,9 @@ firewall_rule:
 infra_collection_azure_region: "westeurope"
 infra_collection_environment_name: "dev"
 infra_collection_resource_group: "rg"
-infra_collection_terraform_components: {# no tengo claro este objeto %}
+infra_collection_terraform_components:
+  - databricks
+  - redis
 infra_collection_terraform:
   databricks:
     secrets_scope: ""
@@ -15,7 +17,7 @@ infra_collection_terraform:
     tags:
       tag: "value"
     users:
-      - test_user {% no tengo claro este objeto %}
+      - test_user // no tengo claro este objeto
     vnet:
       cidr: ""
     workspace_url: ""
@@ -24,7 +26,7 @@ infra_collection_terraform:
     enable_firewall: true
     enable_non_ssl: true
     firewall_rules:
-      - prueba
+      - prueba // no tengo claro este objeto
     name: "name"
     redis_version: 6
     unique_resource_name: "rn"
