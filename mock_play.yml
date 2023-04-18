@@ -1,0 +1,25 @@
+---
+- hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Import terraform vars values
+      include_vars: "vars/{{ config_item }}"
+      with_items:
+        - "base_config.yml"
+        - "mocked_vars.yml"
+      loop_control:
+        loop_var: config_item
+
+    - name: Check if dest dir exists
+      file:
+        path: "{{ TMPDIR }}"
+        mode: "0755"
+        state: directory
+
+    - name: Render template from mock values
+      template:
+        src: "{{ src_file }}"
+        dest: "{{ TMPDIR }}/{{ src_file }}"
+        mode: "0644"
+...
