@@ -1,0 +1,21 @@
+infra_collection_resource_group: "rg"
+infra_collection_terraform_storage_account_name: "sa"
+infra_collection_azure_region: "westeurope"
+terraform_storageaccount_key: "asdfghpaoqwrt123445"
+subscription_id: "añlsdhfoqpwuyr1241234"
+service_principal_client_id: "aps8ouiqpwer18749102341"
+service_principal_secret: "1038974qwehorpqyf1y04981410"
+tenant_id: "14096591iowperuti175"
+component: ""
+{# lookup('file', "{{ infra_collection_terraform_output_path }}/"+component+"/_export.tmpl" ) #}
+infra_collection_terraform:
+  redis:
+    unique_resource_name: "rn"
+    name: "name"
+    capacity: "1GiB"
+    redis_version: 6
+firewall_rule:
+  unique_resource_name: "rn"
+  name: "name"
+  start_ip: "1.2.3.4"
+  end_ip: "1.2.3.6"
